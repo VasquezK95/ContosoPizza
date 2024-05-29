@@ -1,0 +1,54 @@
+@ContosoPizza_HostAddress = http://localhost:5290
+
+GET {{ContosoPizza_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### 
+// Testing the created controller (Unit 6, Step 2)
+GET {{ContosoPizza_HostAddress}}/pizza/ 
+Accept: application/json
+
+###
+// Testing single query request (Unit 6, Step 4)
+GET {{ContosoPizza_HostAddress}}/pizza/1 
+Accept: application/json
+
+###
+// Testing an invalid parameter (Unit 6, Step 5)
+GET {{ContosoPizza_HostAddress}}/pizza/5
+Accept: application/json
+
+###
+// Making a POST request to add a new pizza (Unit 8, Step 2)
+POST {{ContosoPizza_HostAddress}}/pizza/
+Content-Type: application/json
+
+{
+    "name": "Hawaii",
+    "isGlutenFree": false
+}
+
+###
+// Updating pizza to Hawaiian (Unit 8, Step 3)
+PUT {{ContosoPizza_HostAddress}}/pizza/3
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Hawaiian",
+    "isGlutenFree": false
+}
+
+###
+// Verifying pizza updated
+GET {{ContosoPizza_HostAddress}}/pizza/3
+Accept: application/json
+
+###
+// Deleting the newly created pizza (Unit 8, Step 4)
+DELETE {{ContosoPizza_HostAddress}}/pizza/3
+
+###
+// Verifying that the pizza was removed
+GET {{ContosoPizza_HostAddress}}/pizza/
+Accept: application/json
